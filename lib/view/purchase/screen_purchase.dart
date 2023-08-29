@@ -12,8 +12,8 @@ import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../controller/bank_info_provider.dart';
 
-class TransferScreen extends StatelessWidget {
-  const TransferScreen({super.key});
+class PurchaseScreen extends StatelessWidget {
+  const PurchaseScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class TransferScreen extends StatelessWidget {
                   ),
                   sizedH5,
                   const Text(
-                    "Existing bank where loan existse",
+                    "Your work profile",
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
@@ -69,23 +69,23 @@ class TransferScreen extends StatelessWidget {
                   ),
                   Consumer<BankInfoProvider>(builder: (context, value, child) {
                     return Expanded(
-                      //  width: Adaptive.w(6),
                       child: ListView.builder(
                         itemCount: 1,
                         itemBuilder: (context, index) {
                           return DropDownWidget(
-                            dropDownName: value.bankInfoList!.schema
-                                .fields[index + 3].schema.name,
+                            dropDownName: value
+                                .bankInfoList!.schema.fields[index].schema.name,
                             dropDownList: value.bankInfoList!.schema
-                                .fields[index + 3].schema.options!
+                                .fields[index + 1].schema.options!
                                 .map((e) => e.value)
                                 .toList(),
-                            hintText: "Select the Bank",
+                            hintText: "Select your work profile",
                           );
                         },
                       ),
                     );
                   }),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -141,7 +141,7 @@ class TransferScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const TransferScreen(),
+                                              const PurchaseScreen(),
                                         ));
                                   }
                                 },

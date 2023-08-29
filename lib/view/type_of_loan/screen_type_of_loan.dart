@@ -4,16 +4,16 @@ import 'package:banking_app/controller/type_of_loan_provider.dart';
 import 'package:banking_app/utils/colors.dart';
 import 'package:banking_app/utils/sizedbox.dart';
 import 'package:banking_app/view/balance_transfer/transferPage.dart';
-import 'package:banking_app/view/purchase/widgets/text_form_field.dart';
 import 'package:banking_app/view/type_of_loan/widgets/slider_container.dart';
+import 'package:banking_app/view/purchase/screen_purchase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../controller/bank_info_provider.dart';
 
-class TransferScreen extends StatelessWidget {
-  const TransferScreen({super.key});
+class LoanTypeScreen extends StatelessWidget {
+  const LoanTypeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,9 @@ class TransferScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       SliderContainer(color: compleateSliderColor),
-                      SliderContainer(color: compleateSliderColor),
+                      SliderContainer(
+                        color: incompleateSliderColor,
+                      ),
                       SliderContainer(
                         color: incompleateSliderColor,
                       ),
@@ -57,7 +59,7 @@ class TransferScreen extends StatelessWidget {
                   ),
                   sizedH5,
                   const Text(
-                    "Existing bank where loan existse",
+                    "Type of loan",
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
@@ -67,48 +69,60 @@ class TransferScreen extends StatelessWidget {
                   SizedBox(
                     height: Adaptive.h(1),
                   ),
-                  Consumer<BankInfoProvider>(builder: (context, value, child) {
-                    return Expanded(
-                      //  width: Adaptive.w(6),
-                      child: ListView.builder(
-                        itemCount: 1,
-                        itemBuilder: (context, index) {
-                          return DropDownWidget(
-                            dropDownName: value.bankInfoList!.schema
-                                .fields[index + 3].schema.name,
-                            dropDownList: value.bankInfoList!.schema
-                                .fields[index + 3].schema.options!
-                                .map((e) => e.value)
-                                .toList(),
-                            hintText: "Select the Bank",
-                          );
-                        },
-                      ),
-                    );
-                  }),
+                  Container(
+                    width: Adaptive.w(90),
+                    height: Adaptive.h(6.3),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 1.5,
+                          color: data.typeLoan != "Purchase"
+                              ? const Color.fromARGB(255, 189, 189, 189)
+                              : selectedColor),
+                      color: backGroundcolor,
+                      borderRadius: BorderRadius.circular(5.5),
+                    ),
+                    child: data.radioButtonFunction(
+                        title: 'New purchase', value: 'Purchase'),
+                  ),
+                  sizedH3,
+                  Container(
+                    width: Adaptive.w(90),
+                    height: Adaptive.h(6.3),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 1.5,
+                          color: data.typeLoan != "Transfer"
+                              ? const Color.fromARGB(255, 189, 189, 189)
+                              : selectedColor),
+                      color: backGroundcolor,
+                      borderRadius: BorderRadius.circular(5.5),
+                    ),
+                    child: data.radioButtonFunction(
+                        title: 'Balance transfer & Top-Up', value: 'Transfer'),
+                  ),
+                  sizedH30,
+                  SizedBox(
+                    height: Adaptive.h(18),
+                  ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.black54,
-                              size: 17,
-                            ),
-                            Text(
-                              "Back",
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500),
-                            )
-                          ],
-                        ),
+                      const Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.black54,
+                            size: 17,
+                          ),
+                          Text(
+                            "Back",
+                            style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          )
+                        ],
                       ),
                       SizedBox(
                         child: Column(
@@ -141,7 +155,7 @@ class TransferScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const TransferScreen(),
+                                              const PurchaseScreen(),
                                         ));
                                   }
                                 },
