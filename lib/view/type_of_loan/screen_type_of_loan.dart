@@ -71,7 +71,7 @@ class LoanTypeScreen extends StatelessWidget {
                   ),
                   Container(
                     width: Adaptive.w(90),
-                    height: Adaptive.h(6.3),
+                    height: Adaptive.h(6),
                     decoration: BoxDecoration(
                       border: Border.all(
                           width: 1.5,
@@ -87,7 +87,7 @@ class LoanTypeScreen extends StatelessWidget {
                   sizedH3,
                   Container(
                     width: Adaptive.w(90),
-                    height: Adaptive.h(6.3),
+                    height: Adaptive.h(6),
                     decoration: BoxDecoration(
                       border: Border.all(
                           width: 1.5,
@@ -100,7 +100,8 @@ class LoanTypeScreen extends StatelessWidget {
                     child: data.radioButtonFunction(
                         title: 'Balance transfer & Top-Up', value: 'Transfer'),
                   ),
-                  sizedH30,
+                  //sizedH30,
+                  SizedBox(height: Adaptive.h(25),),
                   SizedBox(
                     height: Adaptive.h(18),
                   ),
