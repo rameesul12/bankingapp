@@ -3,7 +3,7 @@
 import 'package:banking_app/controller/type_of_loan_provider.dart';
 import 'package:banking_app/utils/colors.dart';
 import 'package:banking_app/utils/sizedbox.dart';
-import 'package:banking_app/view/balance_transfer/transferPage.dart';
+import 'package:banking_app/view/balance_transfer/screen_transfer_page.dart';
 import 'package:banking_app/view/type_of_loan/widgets/slider_container.dart';
 import 'package:banking_app/view/purchase/screen_purchase.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +104,7 @@ class LoanTypeScreen extends StatelessWidget {
                   SizedBox(
                     height: Adaptive.h(18),
                   ),
-
+      
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -113,7 +113,7 @@ class LoanTypeScreen extends StatelessWidget {
                           Icon(
                             Icons.arrow_back_ios,
                             color: Colors.black54,
-                            size: 17,
+                            size: 15,
                           ),
                           Text(
                             "Back",
@@ -129,14 +129,14 @@ class LoanTypeScreen extends StatelessWidget {
                           children: [
                             ClipRRect(
                               borderRadius:
-                                  BorderRadius.circular(Adaptive.h(10)),
+                                  BorderRadius.circular(Adaptive.h(8)),
                               child: FloatingActionButton(
                                 //  shape:  BeveledRectangleBorder(
                                 //     borderRadius: BorderRadius.zero
                                 //    ),
-
+      
                                 backgroundColor: floatingActionButtonColor,
-
+      
                                 onPressed: () async {
                                   await provider.loadJsonAssets();
                                   provider.bankOptionList();
@@ -159,7 +159,7 @@ class LoanTypeScreen extends StatelessWidget {
                                         ));
                                   }
                                 },
-
+      
                                 child: const Icon(
                                   Icons.arrow_forward_ios,
                                   color: textWhite,

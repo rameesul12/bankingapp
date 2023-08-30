@@ -3,8 +3,9 @@
 import 'package:banking_app/controller/type_of_loan_provider.dart';
 import 'package:banking_app/utils/colors.dart';
 import 'package:banking_app/utils/sizedbox.dart';
-import 'package:banking_app/view/balance_transfer/transferPage.dart';
+import 'package:banking_app/view/balance_transfer/screen_transfer_page.dart';
 import 'package:banking_app/view/purchase/widgets/text_form_field.dart';
+import 'package:banking_app/view/section_2/location_state_and_city.dart';
 import 'package:banking_app/view/type_of_loan/widgets/slider_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -126,24 +127,14 @@ class TransferScreen extends StatelessWidget {
                                 onPressed: () async {
                                   await provider.loadJsonAssets();
                                   provider.bankOptionList();
-                                  if (Provider.of<HomePageProvider>(context,
-                                              listen: false)
-                                          .typeLoan ==
-                                      "Transfer") {
+                                   provider.locatedPlace();
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const TransferScreen(),
+                                              const LocationStateAndCity(),
                                         ));
-                                  } else {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const TransferScreen(),
-                                        ));
-                                  }
+                                
                                 },
 
                                 child: const Icon(

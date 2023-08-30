@@ -86,7 +86,9 @@ class DropDownWidget extends StatelessWidget {
               ),
 
               onChanged: (value) {
+                
                 selectedType = value;
+                data.jobType=selectedType;
               },
               selectedItem: selectedType,
             ),

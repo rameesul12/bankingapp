@@ -1,9 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:developer';
+
 import 'package:banking_app/controller/type_of_loan_provider.dart';
 import 'package:banking_app/utils/colors.dart';
 import 'package:banking_app/utils/sizedbox.dart';
-import 'package:banking_app/view/balance_transfer/transferPage.dart';
+import 'package:banking_app/view/balance_transfer/screen_transfer_page.dart';
 import 'package:banking_app/view/purchase/widgets/text_form_field.dart';
 import 'package:banking_app/view/type_of_loan/widgets/slider_container.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +13,14 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../controller/bank_info_provider.dart';
+import '../section/screen_family_income.dart';
 
 class PurchaseScreen extends StatelessWidget {
   const PurchaseScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    String? type;
     final provider = Provider.of<BankInfoProvider>(context, listen: false);
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value:
@@ -73,6 +77,7 @@ class PurchaseScreen extends StatelessWidget {
                         itemCount: 1,
                         itemBuilder: (context, index) {
                           return DropDownWidget(
+                            selectedType:type ,
                             dropDownName: value
                                 .bankInfoList!.schema.fields[index].schema.name,
                             dropDownList: value.bankInfoList!.schema
@@ -124,26 +129,18 @@ class PurchaseScreen extends StatelessWidget {
                                 backgroundColor: floatingActionButtonColor,
 
                                 onPressed: () async {
-                                  await provider.loadJsonAssets();
+                                
+                                    await provider.loadJsonAssets();
                                   provider.bankOptionList();
-                                  if (Provider.of<HomePageProvider>(context,
-                                              listen: false)
-                                          .typeLoan ==
-                                      "Transfer") {
+                                 log(type.toString());
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const TransferScreen(),
+                                               FamilyIncome(),
                                         ));
-                                  } else {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const PurchaseScreen(),
-                                        ));
-                                  }
+                                
+                                 
                                 },
 
                                 child: const Icon(

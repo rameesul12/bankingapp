@@ -11,13 +11,14 @@ import '../model/bank_model_details.dart';
 class BankInfoProvider extends ChangeNotifier {
 
   BankLoanDetails? bankInfoList;
-
   List<Option> options = [];
   List<String> optionStringList = [];
-
+  String? jobType;
   List<PurpleField> fields = [];
  List<dynamic>datas=[];
   List<dynamic> sectionDropList=[];
+ dynamic picker;
+ dynamic picker2;
 
   //======================
   //full json response taking in to BankInfoList
@@ -105,6 +106,27 @@ class BankInfoProvider extends ChangeNotifier {
  }
 
 
+ //banktransfer page city and state findings
+
+ locatedPlace(){
+  int index;
+final picker=bankInfoList!.schema.fields[4].schema.fields![0];
+final picker2=bankInfoList!.schema.fields[4].schema.fields![1];
+  
+
+log(picker.toString());
+
+    
+   // log(placePicker.toString());
+    notifyListeners();
+  }
+
+  
+ 
+
+ }
+
+
 
  
-}
+
