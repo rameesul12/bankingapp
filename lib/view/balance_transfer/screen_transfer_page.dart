@@ -75,6 +75,7 @@ class TransferScreen extends StatelessWidget {
                         itemCount: 1,
                         itemBuilder: (context, index) {
                           return DropDownWidget(
+                            bank: true,
                             dropDownName: value.bankInfoList!.schema
                                 .fields[index + 3].schema.name,
                             dropDownList: value.bankInfoList!.schema

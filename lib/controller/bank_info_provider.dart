@@ -14,6 +14,8 @@ class BankInfoProvider extends ChangeNotifier {
   List<Option> options = [];
   List<String> optionStringList = [];
   String? jobType;
+  String? type ;
+  String? bankname;
   List<PurpleField> fields = [];
  List<dynamic>datas=[];
   List<dynamic> sectionDropList=[];

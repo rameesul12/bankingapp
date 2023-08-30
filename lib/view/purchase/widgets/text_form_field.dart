@@ -15,11 +15,16 @@ class DropDownWidget extends StatelessWidget {
       required this.dropDownName,
       required this.dropDownList,
       required this.hintText,
-      this.selectedType});
+      this.selectedType,
+      this.drop = false,
+      this.bank = false,
+      });
   final String? dropDownName;
   String? selectedType;
   List<String> dropDownList;
   final String hintText;
+  final bool drop;
+  final bool bank;
 
   @override
   Widget build(BuildContext context) {
@@ -86,9 +91,17 @@ class DropDownWidget extends StatelessWidget {
               ),
 
               onChanged: (value) {
-                
-                selectedType = value;
-                data.jobType=selectedType;
+                if (drop == true) {
+                  selectedType = value;
+                  data.type = selectedType;
+                } else if(bank == true){
+                   selectedType = value;
+                  data.bankname = selectedType;
+                }
+                else {
+                  selectedType = value;
+                  data.jobType = selectedType;
+                }
               },
               selectedItem: selectedType,
             ),
